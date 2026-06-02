@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fundoindex">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="#111111">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ADMINISTRADOR"
+                    android:textSize="11sp"
+                    android:textColor="#111192"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/txtBemVindo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Sair"
+                android:textColor="#888888"
+                android:textSize="13sp"
+                android:onClick="sair"
+                app:backgroundTint="#1A1A1A"
+                app:strokeColor="#2A2A2A"
+                app:strokeWidth="1dp"
+                app:cornerRadius="18dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="24dp">
+
+
+        <TextView
+            android:layout_width="323dp"
+            android:layout_height="61dp"
+            android:layout_marginBottom="20dp"
+            android:letterSpacing="0.05"
+            android:text="TREINOS JC"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginBottom="12dp"
+            android:onClick="abrirUsuarios"
+            android:text="Gerenciar Usuários"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            app:backgroundTint="#1A1A2E"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/pessoa"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:iconSize="26dp"
+            app:iconTint="#001FFF"
+            app:strokeColor="#0028BC"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginBottom="12dp"
+            android:onClick="abrirExercicios"
+            android:text="Gerenciar Exercícios"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            app:backgroundTint="#1A1A2E"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/exercicio"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:iconSize="26dp"
+            app:iconTint="#001FFF"
+            app:strokeColor="#0028BC"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginBottom="12dp"
+            android:onClick="abrirTreinos"
+            android:text="Gerenciar Treinos"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            app:backgroundTint="#1A1A2E"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/treinousu"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:iconSize="26dp"
+            app:iconTint="#001FFF"
+            app:strokeColor="#0028BC"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginBottom="12dp"
+            android:onClick="abrirVinculoUsuarioTreino"
+            android:text="Vincular Usuário ao Treino"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            app:backgroundTint="#1A1A2E"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/link"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:iconSize="26dp"
+            app:iconTint="#001FFF"
+            app:strokeColor="#0028BC"
+            app:strokeWidth="1dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
