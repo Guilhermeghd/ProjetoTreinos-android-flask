@@ -72,3 +72,23 @@ TreinosJC/
 ├── gradlew.bat                                 # Gradle Wrapper (Windows)
 └── local.properties                            # Configurações locais (não versionar)
 ```
+
+## 🧪 Testes e Integração Contínua
+
+A API Flask possui testes unitários (pytest) que rodam contra um banco SQLite em
+memória, sem depender do MySQL.
+
+```bash
+cd api_flask_treinosjc_android
+python -m venv .venv
+.venv\Scripts\activate            # Windows (Linux/Mac: source .venv/bin/activate)
+pip install -r requirements-dev.txt
+pytest -v
+```
+
+O pipeline de CI (`.github/workflows/ci.yml`) roda automaticamente a cada push e
+pull request para a branch `main` e executa:
+
+1. **Instalação de dependências** – `pip install -r requirements-dev.txt`
+2. **Execução dos testes** – `pytest -v`
+3. **Build** – construção da imagem Docker da API (`Dockerfile`)
