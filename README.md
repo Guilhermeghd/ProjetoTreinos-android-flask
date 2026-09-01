@@ -1,5 +1,7 @@
 # TreinosJC
 
+[![CI](https://github.com/Guilhermeghd/ProjetoTreinos-android-flask/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Guilhermeghd/ProjetoTreinos-android-flask/actions/workflows/ci.yml)
+
 Um aplicativo Android completo para gerenciamento de treinos físicos, com integração a uma API REST em Python/Flask e banco de dados MySQL.
 
 ## 📋 Descrição do Projeto
