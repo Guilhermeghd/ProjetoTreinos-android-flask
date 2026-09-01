@@ -2,6 +2,12 @@
 
 [![CI](https://github.com/Guilhermeghd/ProjetoTreinos-android-flask/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Guilhermeghd/ProjetoTreinos-android-flask/actions/workflows/ci.yml)
 
+![Último commit](https://img.shields.io/github/last-commit/Guilhermeghd/ProjetoTreinos-android-flask)
+![Tamanho do repo](https://img.shields.io/github/repo-size/Guilhermeghd/ProjetoTreinos-android-flask)
+![Linguagem principal](https://img.shields.io/github/languages/top/Guilhermeghd/ProjetoTreinos-android-flask)
+
+
+
 Um aplicativo Android completo para gerenciamento de treinos físicos, com integração a uma API REST em Python/Flask e banco de dados MySQL.
 
 ## 📋 Descrição do Projeto
