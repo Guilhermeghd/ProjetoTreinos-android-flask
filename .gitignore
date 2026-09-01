@@ -1,0 +1,15 @@
+api_flask_treinosjc_android/.venv/
+api_flask_treinosjc_android/venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+TreinosJC/local.properties
+TreinosJC/.gradle/
+TreinosJC/build/
+TreinosJC/app/build/
+TreinosJC/.idea/
+*.iml
+.DS_Store
