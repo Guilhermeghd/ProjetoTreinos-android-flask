@@ -4,3 +4,10 @@ __pycache__/
 .pytest_cache/
 tests/
 migrations/
+.git/
+.gitignore
+.idea/
+*.md
+Dockerfile
+.dockerignore
+.env
