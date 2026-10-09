@@ -73,10 +73,11 @@ jobs:
           set -e
           curl -sf -X POST http://localhost:5000/cadastrar \
             -d "txtNome=CI Teste" -d "txtEmail=ci@teste.com" -d "txtSenha=123456" | tee /tmp/cadastro.json
-          grep -q '"INSERT": "OK"' /tmp/cadastro.json
+          grep -qE '"INSERT":\s*"OK"' /tmp/cadastro.json
+
           curl -sf -X POST http://localhost:5000/login \
             -d "txtEmail=ci@teste.com" -d "txtSenha=123456" | tee /tmp/login.json
-          grep -q '"LOGIN": "OK"' /tmp/login.json
+          grep -qE '"LOGIN":\s*"OK"' /tmp/login.json
       - name: Exibir logs em caso de falha
         if: failure()
         run: docker compose logs
