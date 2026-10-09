@@ -1,6 +1,5 @@
 name: CI
 
-# Dispara em todo push e pull request para a branch main.
 on:
   push:
     branches: ["main"]
@@ -8,48 +7,79 @@ on:
     branches: ["main"]
 
 jobs:
-  # -------- 1) Testes --------
   test:
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: api_flask_treinosjc_android
-
     steps:
       - name: Clonar o repositório
         uses: actions/checkout@v4
-
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: "pip"
           cache-dependency-path: api_flask_treinosjc_android/requirements-dev.txt
-
       - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
-
       - name: Executar testes
         run: pytest -v
 
-  # -------- 2) Build --------
   build:
-    needs: test            # só roda se os testes passarem
+    needs: test
     runs-on: ubuntu-latest
-
     steps:
       - name: Clonar o repositório
         uses: actions/checkout@v4
-
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3
-
       - name: Construir a imagem Docker da API
         uses: docker/build-push-action@v6
         with:
           context: ./api_flask_treinosjc_android
           push: false
           tags: treinosjc-api:${{ github.sha }}
+
+  integration-test:
+    needs: build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api_flask_treinosjc_android
+    steps:
+      - name: Clonar o repositório
+        uses: actions/checkout@v4
+      - name: Construir e iniciar os serviços
+        run: docker compose up -d --build
+      - name: Aguardar o banco ficar saudável
+        run: |
+          timeout 60s bash -c 'until [ "$(docker inspect -f "{{.State.Health.Status}}" $(docker compose ps -q db))" = "healthy" ]; do sleep 2; done'
+          docker compose ps
+      - name: Criar as tabelas no banco (sem migrations neste projeto)
+        run: |
+          docker compose exec -T api python -c "
+          from app import create_app
+          from db import db
+          app = create_app()
+          with app.app_context():
+              db.create_all()
+          print('tabelas criadas com sucesso')
+          "
+      - name: Testar a API rodando de verdade (cadastro + login)
+        run: |
+          set -e
+          curl -sf -X POST http://localhost:5000/cadastrar \
+            -d "txtNome=CI Teste" -d "txtEmail=ci@teste.com" -d "txtSenha=123456" | tee /tmp/cadastro.json
+          grep -q '"INSERT": "OK"' /tmp/cadastro.json
+          curl -sf -X POST http://localhost:5000/login \
+            -d "txtEmail=ci@teste.com" -d "txtSenha=123456" | tee /tmp/login.json
+          grep -q '"LOGIN": "OK"' /tmp/login.json
+      - name: Exibir logs em caso de falha
+        if: failure()
+        run: docker compose logs
+      - name: Parar e remover os serviços
+        if: always()
+        run: docker compose down -v
